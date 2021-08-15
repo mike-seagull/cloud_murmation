@@ -4,7 +4,7 @@ on:
     branches:
       - develop
       - master
-      - devops/tf-deploy
+      - feature/oracle
 jobs:
   lint:
     name: lint
@@ -20,17 +20,19 @@ jobs:
       - name: Run TFLint
         run: tflint -f compact
   deploy:
-    if: ${{ github.ref == 'refs/heads/devops/master' }}
+    if: ${{ github.ref == 'refs/heads/feature/oracle' }}
     name: deploy
     needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Terraform Cloud
+      - name: terraform apply
         uses: kvrhdn/tfe-run@v1
         with:
           token: ${{ secrets.TF_API_TOKEN }}
           organization: ${{ secrets.TF_CLOUD_ORGANIZATION }}
           workspace: ${{ secrets.TF_CLOUD_WORKSPACE }}
           type: apply
+          wait-for-completion: true
+

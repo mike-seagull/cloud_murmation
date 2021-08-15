@@ -1,4 +1,8 @@
-# infra
+cloud_murmation
+===
+Terraform module for creating free cloud infrastructure in Oracle Cloud and Google Cloud using Terraform Cloud for state management.
+___
+![alt text](murmation.png "Murmation")
 ## Instructions
 https://learn.hashicorp.com/tutorials/terraform/github-actions
 ### Terraform Cloud

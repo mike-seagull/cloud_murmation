@@ -42,7 +42,7 @@ provider "oci" {
   region = "us-phoenix-1"
 }
 
-resource "oci_core_instance" "instance1" {
+resource "oci_core_instance" "oci_instance1" {
   availability_domain = "yuqr:PHX-AD-1"
   shape = "VM.Standard.E2.1.Micro"
   compartment_id = var.oci_tenancy
@@ -59,7 +59,7 @@ resource "oci_core_instance" "instance1" {
       source_id = "ocid1.image.oc1.phx.aaaaaaaaky4luenz7yvuzz26zipiun6dzbkm7hkon7tppynpm2l6p32aen7a"
   }
 }
-resource "oci_core_instance" "instance2" {
+resource "oci_core_instance" "oci_instance2" {
   availability_domain = "yuqr:PHX-AD-1"
   shape = "VM.Standard.E2.1.Micro"
   compartment_id = var.oci_tenancy

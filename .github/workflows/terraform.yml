@@ -2,8 +2,7 @@ name: terraform
 on:
   push:
     branches:
-      - develop
-      - master
+      - '**'
 jobs:
   lint:
     name: lint
@@ -19,7 +18,8 @@ jobs:
       - name: Run TFLint
         run: tflint -f compact
   deploy:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/gcp' }}
+    # if: ${{ github.ref == 'refs/heads/master' }}
     name: deploy
     needs: lint
     runs-on: ubuntu-latest

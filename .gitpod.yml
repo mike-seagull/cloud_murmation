@@ -1,5 +1,19 @@
 github:
   prebuilds:
-    master: true
+    master: false
     branches: true
-image: ghcr.io/mike-seagull/gitpod-base:master
+image: ghcr.io/mike-seagull/gitpod-images:base
+vscode:
+  extensions:
+    - hashicorp.terraform
+    - dcasella.monokai-plusplus
+tasks:
+  - name: setup terraform
+    init: |
+      brew install terraform
+      touch ~/.terraformrc
+      echo "credentials \"app.terraform.io\" {" > ~/.terraformrc
+      echo "  token = \"$TF_TOKEN\"" >> ~/.terraformrc
+      echo "}" >> ~/.terraformr
+    command: terraform init
+

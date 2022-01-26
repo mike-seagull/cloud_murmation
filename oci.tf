@@ -100,6 +100,6 @@ resource "oci_core_instance" "oci_instance3" {
   }
   source_details {
       source_type = "image"
-      source_id = "ocid1.image.oc1.phx.aaaaaaaaky4luenz7yvuzz26zipiun6dzbkm7hkon7tppynpm2l6p32aen7a"
+      source_id = "ocid1.image.oc1.phx.aaaaaaaap6n3pdn4xiiyba6plfdq5nq5infnmkjm3nw7romlftpudjmro3ka"
   }
 }

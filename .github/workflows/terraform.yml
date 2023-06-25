@@ -4,12 +4,11 @@ on:
     branches:
       - '**'
 jobs:
-  lint:
+  tflint:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout source code
+      - uses: actions/checkout@v3
       - uses: terraform-linters/setup-tflint@v1
       - name: Show version
         run: tflint --version
@@ -17,20 +16,31 @@ jobs:
         run: tflint --init
       - name: Run TFLint
         run: tflint -f compact
-  deploy:
-    if: ${{ github.ref == 'refs/heads/master' }}
-    name: deploy
-    needs: lint
+  terraform-validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: terraform apply
-        uses: kvrhdn/tfe-run@v1
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+  terraform-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate docs
+        uses: terraform-docs/gh-actions@v1.0.0
         with:
-          token: ${{ secrets.TF_API_TOKEN }}
-          organization: ${{ secrets.TF_CLOUD_ORGANIZATION }}
-          workspace: ${{ secrets.TF_CLOUD_WORKSPACE }}
-          type: apply
-          wait-for-completion: true
-
+          working-dir: .
+          output-file: README.md
+          output-method: replace
+          git-push: "true"
+          args: "--hide requirements --hide modules --hide outputs"
+        # terraform-docs markdown . --output-file README.md --output-mode replace --hide requirements --hide modules --hide outputs

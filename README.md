@@ -8,17 +8,17 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.70.0 |
-| <a name="provider_oci"></a> [oci](#provider\_oci) | 5.2.1 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 4.70.0 |
+| <a name="provider_oci"></a> [oci](#provider\_oci) | >= 5.2.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [google_compute_instance.gcp_instance](https://registry.terraform.io/providers/hashicorp/google/4.70.0/docs/resources/compute_instance) | resource |
-| [oci_core_instance.oci_instance1](https://registry.terraform.io/providers/oracle/oci/5.2.1/docs/resources/core_instance) | resource |
-| [oci_core_instance.oci_instance2](https://registry.terraform.io/providers/oracle/oci/5.2.1/docs/resources/core_instance) | resource |
-| [oci_core_instance.oci_instance3](https://registry.terraform.io/providers/oracle/oci/5.2.1/docs/resources/core_instance) | resource |
+| [google_compute_instance.gcp_instance](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance) | resource |
+| [oci_core_instance.oci_instance1](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
+| [oci_core_instance.oci_instance2](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
+| [oci_core_instance.oci_instance3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
 
 ## Inputs
 

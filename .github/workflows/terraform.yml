@@ -16,7 +16,7 @@ jobs:
       - name: Init TFLint
         run: tflint --init
       - name: Run TFLint
-        run: tflint -f compact
+        run: tflint -f compact --minimum-failure-severity=error
   terraform-validate:
     runs-on: ubuntu-latest
     steps:

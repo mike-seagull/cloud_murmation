@@ -1,4 +1,4 @@
-name: terraform
+name: terraform-tests
 on:
   push:
     branches:
@@ -32,16 +32,3 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-  terraform-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Generate docs
-        uses: terraform-docs/gh-actions@v1.0.0
-        with:
-          working-dir: .
-          output-file: README.md
-          output-method: replace
-          git-push: "true"
-          args: "--hide requirements --hide modules --hide outputs"
-        # terraform-docs markdown . --output-file README.md --output-mode replace --hide requirements --hide modules --hide outputs

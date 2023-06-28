@@ -1,7 +1,9 @@
 name: terraform-docs
 on:
   workflow_run:
-    workflows: ["terraform-tests"]
+    workflows:
+      - terraform-validate
+      - tflint
     branches: 
       - main
     types:

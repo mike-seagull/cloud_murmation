@@ -112,7 +112,7 @@ resource "oci_core_instance" "oci_instance2" {
   }
 }
 resource "oci_core_instance" "oci_instance3" {
-  availability_domain = "yuqr:PHX-AD-1"
+  availability_domain = "yuqr:PHX-AD-3"
   shape = "VM.Standard.A1.Flex" // always free
   compartment_id = var.oci_tenancy
   create_vnic_details {

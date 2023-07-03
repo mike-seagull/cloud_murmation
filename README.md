@@ -19,6 +19,7 @@
 | [oci_core_instance.oci_instance1](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
 | [oci_core_instance.oci_instance2](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
 | [oci_core_instance.oci_instance3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance) | resource |
+| [google_compute_network.network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
 
 ## Inputs
 
@@ -27,10 +28,10 @@
 | <a name="input_gcp_credentials"></a> [gcp\_credentials](#input\_gcp\_credentials) | the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud | `string` | n/a | yes |
 | <a name="input_gcp_displayname"></a> [gcp\_displayname](#input\_gcp\_displayname) | the displayname that be seen in the GCP UI | `string` | `"instance"` | no |
 | <a name="input_gcp_hostname"></a> [gcp\_hostname](#input\_gcp\_hostname) | the hostname to give the instance | `string` | `"instance"` | no |
+| <a name="input_gcp_image"></a> [gcp\_image](#input\_gcp\_image) | image to use for the instance. 'Premium' images are not free. Here are some of the images available: https://cloud.google.com/compute/docs/images/os-details | `string` | `"ubuntu-2204-lts"` | no |
 | <a name="input_gcp_map_of_ssh_usernames_and_public_keys"></a> [gcp\_map\_of\_ssh\_usernames\_and\_public\_keys](#input\_gcp\_map\_of\_ssh\_usernames\_and\_public\_keys) | map of ssh usernames and public keys. at a minimum you will need a key for the ubuntu user, ex: { ubuntu = 'mypublickeyeample'} | `map` | n/a | yes |
+| <a name="input_gcp_network"></a> [gcp\_network](#input\_gcp\_network) | network name to put the instance in. | `string` | `"default"` | no |
 | <a name="input_gcp_project"></a> [gcp\_project](#input\_gcp\_project) | the human-readable name for the project to put the instance in *not the id* | `string` | n/a | yes |
-| <a name="input_image"></a> [image](#input\_image) | image to use for the instance. 'Premium' images are not free. Here are some of the images available: https://cloud.google.com/compute/docs/images/os-details | `string` | `"ubuntu-2204-lts"` | no |
-| <a name="input_network"></a> [network](#input\_network) | network name to put the instance in. | `string` | `"default"` | no |
 | <a name="input_oci_api_private_key"></a> [oci\_api\_private\_key](#input\_oci\_api\_private\_key) | private key for the OCID user. https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm | `string` | n/a | yes |
 | <a name="input_oci_displayname1"></a> [oci\_displayname1](#input\_oci\_displayname1) | the displayname that be seen for non-ARM instance1 in the OCI UI | `string` | `"instance1"` | no |
 | <a name="input_oci_displayname2"></a> [oci\_displayname2](#input\_oci\_displayname2) | the displayname that be seen for the non-ARM instance2 in the OCI UI | `string` | `"instance2"` | no |

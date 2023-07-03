@@ -23,7 +23,6 @@ variable "oci_subnetid" {
   type        = string
   sensitive   = true
 }
-
 variable "oci_ssh_public_key" {
   description = "public key to log into the instances"
   type        = string
@@ -69,6 +68,7 @@ variable "oci_image_arm" {
   type  = string
   default = "ocid1.image.oc1.phx.aaaaaaaa5o7vmhhofkjbwcithkt6eur4lpfcp4edvbbcgb2aj6zc7ljynksq" // Canonical-Ubuntu-22.04-Minimal-aarch64-2023.05.20-0
 }
+
 provider "oci" {
   tenancy_ocid = var.oci_tenancy
   user_ocid = var.oci_user
@@ -136,4 +136,29 @@ resource "oci_core_instance" "oci_instance3" {
       source_type = "image"
       source_id = var.oci_image_arm
   }
+}
+
+output "oci1_internal_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance1.private_ip
+}
+output "oci1_public_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance1.public_ip
+}
+output "oci2_internal_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance2.private_ip
+}
+output "oci2_public_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance2.public_ip
+}
+output "oci3_internal_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance3.private_ip
+}
+output "oci3_public_ip" {
+  sensitive = true
+  value = oci_core_instance.oci_instance3.public_ip
 }

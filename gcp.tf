@@ -19,9 +19,18 @@ variable "gcp_map_of_ssh_usernames_and_public_keys" {
   sensitive   = true
 }
 variable "gcp_credentials" {
-  description = "the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud"
+  description = "*\"b64_gcp_credentials(preferred)\" or \"gcp_credentials\"* - the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud"
   type        = string
-  sensitive   = true  
+  sensitive   = true
+  default = null
+
+}
+variable "b64_gcp_credentials" {
+  description = "*\"b64_gcp_credentials(preferred)\" or \"gcp_credentials\"* - the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud"
+  type        = string
+  sensitive   = true
+  default = null
+
 }
 variable "gcp_image" {
   description = "image to use for the instance. 'Premium' images are not free. Here are some of the images available: https://cloud.google.com/compute/docs/images/os-details"
@@ -38,7 +47,7 @@ provider "google" {
   project = var.gcp_project
   region  = "us-central1"
   zone    = "us-central1-c"
-  credentials = var.gcp_credentials
+  credentials = var.b64_gcp_credentials == null ? var.gcp_credentials : base64decode(var.b64_gcp_credentials)
 }
 
 resource "google_compute_instance" "gcp_instance" {

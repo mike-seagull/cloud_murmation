@@ -25,7 +25,8 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_gcp_credentials"></a> [gcp\_credentials](#input\_gcp\_credentials) | the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud | `string` | n/a | yes |
+| <a name="input_b64_gcp_credentials"></a> [b64\_gcp\_credentials](#input\_b64\_gcp\_credentials) | *"b64\_gcp\_credentials(preferred)" or "gcp\_credentials"* - the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud | `string` | `null` | no |
+| <a name="input_gcp_credentials"></a> [gcp\_credentials](#input\_gcp\_credentials) | *"b64\_gcp\_credentials(preferred)" or "gcp\_credentials"* - the credentials for the GCP Terraform provider. Instructions for getting them are here: https://support.hashicorp.com/hc/en-us/articles/4406586874387-How-to-set-up-Google-Cloud-GCP-credentials-in-Terraform-Cloud | `string` | `null` | no |
 | <a name="input_gcp_displayname"></a> [gcp\_displayname](#input\_gcp\_displayname) | the displayname that be seen in the GCP UI | `string` | `"instance"` | no |
 | <a name="input_gcp_hostname"></a> [gcp\_hostname](#input\_gcp\_hostname) | the hostname to give the instance | `string` | `"instance"` | no |
 | <a name="input_gcp_image"></a> [gcp\_image](#input\_gcp\_image) | image to use for the instance. 'Premium' images are not free. Here are some of the images available: https://cloud.google.com/compute/docs/images/os-details | `string` | `"ubuntu-2204-lts"` | no |

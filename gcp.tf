@@ -43,6 +43,13 @@ variable "gcp_network" {
   default     = "default"
 }
 
+variable "b64_gcp_user_data" {
+  description = "base64 encoded userdata"
+  type        = string
+  sensitive   = true
+  default     = null
+}
+
 provider "google" {
   project = var.gcp_project
   region  = "us-central1"
@@ -55,7 +62,7 @@ resource "google_compute_instance" "gcp_instance" {
   machine_type = "e2-micro" // always free
   hostname     = var.gcp_hostname
   metadata     = merge(
-    var.b64_user_data != null ? {"user-data"=base64decode(var.b64_user_data)} : {},
+    var.b64_gcp_user_data != null ? {"user-data"=base64decode(var.b64_gcp_user_data)} : {},
     {
       // at a minimum you will need a key for the ubuntu user
       ssh-keys = join("\n", [for user, key in var.gcp_map_of_ssh_usernames_and_public_keys : "${user}:${key}"])

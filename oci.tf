@@ -38,6 +38,12 @@ variable "oci_hostname1" {
   type        = string
   default     = "instance1"
 }
+variable "b64_oci1_user_data" {
+  description = "base64 encoded userdata"
+  type        = string
+  sensitive   = true
+  default     = null
+}
 variable "oci_displayname2" {
   description = "the displayname that be seen for the non-ARM instance2 in the OCI UI"
   type        = string
@@ -48,6 +54,12 @@ variable "oci_hostname2" {
   type        = string
   default     = "instance2"
 }
+variable "b64_oci2_user_data" {
+  description = "base64 encoded userdata"
+  type        = string
+  sensitive   = true
+  default     = null
+}
 variable "oci_displayname3" {
   description = "the displayname that be seen for the ARM instance in the OCI UI"
   type        = string
@@ -57,6 +69,12 @@ variable "oci_hostname3" {
   description = "the hostname to give the ARM instance"
   type        = string
   default     = "instance3"
+}
+variable "b64_oci3_user_data" {
+  description = "base64 encoded userdata"
+  type        = string
+  sensitive   = true
+  default     = null
 }
 variable "oci_image" {
   description = "image to use for the 2 non-arm instances. Here's a list of the images available: https://docs.oracle.com/en-us/iaas/images/"
@@ -87,7 +105,7 @@ resource "oci_core_instance" "oci_instance1" {
   }
   display_name = var.oci_displayname1
   metadata = merge(
-    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    var.b64_oci1_user_data != null ? {"user-data"=var.b64_oci1_user_data} : {},
     {
       ssh_authorized_keys = var.oci_ssh_public_key
     }
@@ -107,7 +125,7 @@ resource "oci_core_instance" "oci_instance2" {
   }
   display_name = var.oci_displayname2
   metadata = merge(
-    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    var.b64_oci2_user_data != null ? {"user-data"=var.b64_oci2_user_data} : {},
     {
       ssh_authorized_keys = var.oci_ssh_public_key
     }
@@ -136,7 +154,7 @@ resource "oci_core_instance" "oci_instance3" {
   }
   display_name = var.oci_displayname3
   metadata = merge(
-    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    var.b64_oci3_user_data != null ? {"user-data"=var.b64_oci3_user_data} : {},
     {
       ssh_authorized_keys = var.oci_ssh_public_key
     }

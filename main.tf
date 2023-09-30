@@ -18,10 +18,3 @@ terraform {
     }
   }
 }
-
-variable "b64_user_data" {
-  description = "base64 encoded userdata"
-  type        = string
-  sensitive   = true
-  default     = null
-}

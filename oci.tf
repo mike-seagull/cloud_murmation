@@ -86,9 +86,12 @@ resource "oci_core_instance" "oci_instance1" {
       hostname_label = var.oci_hostname1
   }
   display_name = var.oci_displayname1
-  metadata = {
+  metadata = merge(
+    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    {
       ssh_authorized_keys = var.oci_ssh_public_key
-  }
+    }
+  )
   source_details {
       source_type = "image"
       source_id = var.oci_image
@@ -103,9 +106,12 @@ resource "oci_core_instance" "oci_instance2" {
       hostname_label = var.oci_hostname2
   }
   display_name = var.oci_displayname2
-  metadata = {
+  metadata = merge(
+    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    {
       ssh_authorized_keys = var.oci_ssh_public_key
-  }
+    }
+  )
   source_details {
       source_type = "image"
       source_id = var.oci_image
@@ -129,9 +135,12 @@ resource "oci_core_instance" "oci_instance3" {
       ocpus = 4
   }
   display_name = var.oci_displayname3
-  metadata = {
+  metadata = merge(
+    var.b64_user_data != null ? {"user-data"=var.b64_user_data} : {},
+    {
       ssh_authorized_keys = var.oci_ssh_public_key
-  }
+    }
+  )
   source_details {
       source_type = "image"
       source_id = var.oci_image_arm

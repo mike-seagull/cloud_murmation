@@ -54,10 +54,13 @@ resource "google_compute_instance" "gcp_instance" {
   name         = var.gcp_displayname
   machine_type = "e2-micro" // always free
   hostname     = var.gcp_hostname
-  metadata     = {
-    // at a minimum you will need a key for the ubuntu user
-    ssh-keys = join("\n", [for user, key in var.gcp_map_of_ssh_usernames_and_public_keys : "${user}:${key}"])
-  }
+  metadata     = merge(
+    var.b64_user_data != null ? {"user-data"=base64decode(var.b64_user_data)} : {},
+    {
+      // at a minimum you will need a key for the ubuntu user
+      ssh-keys = join("\n", [for user, key in var.gcp_map_of_ssh_usernames_and_public_keys : "${user}:${key}"])
+    }
+  )
 
   boot_disk {
     initialize_params {
